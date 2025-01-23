@@ -14,7 +14,7 @@ public class Schedule {
     private String weekEndDate;   // תאריך סיום השבוע
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private List<com.example.SmartShiftAI.Model.Shift> shifts; // רשימת המשמרות עבור השבוע
+    private List<com.example.SmartAI.Model.Shift> shifts; // רשימת המשמרות עבור השבוע
 
     public Long getId() {
         return id;
@@ -40,11 +40,11 @@ public class Schedule {
         this.weekEndDate = weekEndDate;
     }
 
-    public List<com.example.SmartShiftAI.Model.Shift> getShifts() {
+    public List<com.example.SmartAI.Model.Shift> getShifts() {
         return shifts;
     }
 
-    public void setShifts(List<com.example.SmartShiftAI.Model.Shift> shifts) {
+    public void setShifts(List<com.example.SmartAI.Model.Shift> shifts) {
         this.shifts = shifts;
     }
 }

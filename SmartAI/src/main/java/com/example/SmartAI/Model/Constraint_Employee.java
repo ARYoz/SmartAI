@@ -1,28 +1,29 @@
 package com.example.SmartAI.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Constraint_Employee {
-    @Id
-    private String employeeID;
+
+    @Id @GeneratedValue
+    private Long employeeID;
 
     private String reason;
-    private String date;
-    private String shiftType;
+    private LocalDate date;
+    private ShiftType shiftType;
     private int priority;
 
     @ManyToOne
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
 
-    public String getEmployeeID() {
+    public Long getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(String employeeID) {
+    public void setEmployeeID(Long employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -34,19 +35,19 @@ public class Constraint_Employee {
         this.reason = reason;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public String getShiftType() {
+    public ShiftType getShiftType() {
         return shiftType;
     }
 
-    public void setShiftType(String shiftType) {
+    public void setShiftType(ShiftType shiftType) {
         this.shiftType = shiftType;
     }
 

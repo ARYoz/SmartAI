@@ -27,7 +27,7 @@ public class EmployeeService {
         return employeeRepo.save(employee);
     }
 
-    public List<Employee>getAllEmployees() // GET
+    public List<Employee>getAllEmployees() // GET ALL EMPLOYEES
     {
         return employeeRepo.findAll();
     }
@@ -59,14 +59,8 @@ public class EmployeeService {
 
     public void DeteteEmployee(Long id) // Delete Employee
     {
-        Employee existsEmployee = getEmployeeByID(id);
-        employeeRepo.delete(existsEmployee);
-    }
 
- /*public List<Employee> findByfirstName(String FirstName)
- {
-     return employeeRepo.findByfirstName(FirstName);
- }
- */
+        employeeRepo.deleteById(id);
+    }
 
 }

@@ -35,6 +35,18 @@ public class Shift {
     )
     private List<Employee> employees;
 
+    public Shift(LocalDate date, ShiftType shiftType, Employee employee, int duration) {
+        this.date = date;
+        this.shiftType = shiftType;
+        this.employee = employee;
+        this.duration = duration;
+    }
+
+    public Shift() {
+
+    }
+
+
     public Schedule getSchedule() {
         return schedule;
     }

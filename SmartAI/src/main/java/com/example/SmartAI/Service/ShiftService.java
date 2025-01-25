@@ -1,8 +1,5 @@
 package com.example.SmartAI.Service;
 
-
-
-import com.example.SmartAI.Model.Employee;
 import com.example.SmartAI.Model.Shift;
 import com.example.SmartAI.Model.ShiftType;
 import com.example.SmartAI.Repository.ShiftRepo;
@@ -11,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class ShiftService {
@@ -24,7 +21,7 @@ public class ShiftService {
         this.shiftRepo = shiftRepo;
     }
 
-    public Shift addShift(Shift shift, List<Shift> existingShifts) {
+    public Shift addShift(Shift shift, List<Shift> existingShifts) { //POST
         // בדיקה אם לעובד יש משמרת באותו יום
         boolean hasShiftSameDay = existingShifts.stream()
                 .anyMatch(existingShift ->
@@ -54,7 +51,7 @@ public class ShiftService {
         return shift;
     }
 
-    public List<Shift> getALlShifts() // GET
+    public List<Shift> getALlShifts() // GET ALL SHIFTS
     {
         return shiftRepo.findAll();
     }
@@ -64,7 +61,7 @@ public class ShiftService {
                 .orElseThrow(() -> new RuntimeException("Shift not found with id" + id));
     }
 
-    public Shift UpdateShift(Long id, Shift shiftDetails)
+    public Shift UpdateShift(Long id, Shift shiftDetails) // UPDATE
     {
         Shift existsShift = shiftRepo.getById(id);
 

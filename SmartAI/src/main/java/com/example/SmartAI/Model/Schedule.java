@@ -2,6 +2,7 @@ package com.example.SmartAI.Model;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 @Entity
 public class Schedule {
@@ -10,8 +11,8 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String weekStartDate; // תאריך התחלת השבוע
-    private String weekEndDate;   // תאריך סיום השבוע
+    private LocalDate weekStartDate; // תאריך התחלת השבוע
+    private LocalDate weekEndDate;   // תאריך סיום השבוע
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
     private List<com.example.SmartAI.Model.Shift> shifts; // רשימת המשמרות עבור השבוע
@@ -24,19 +25,19 @@ public class Schedule {
         this.id = id;
     }
 
-    public String getWeekStartDate() {
+    public LocalDate getWeekStartDate() {
         return weekStartDate;
     }
 
-    public void setWeekStartDate(String weekStartDate) {
+    public void setWeekStartDate(LocalDate weekStartDate) {
         this.weekStartDate = weekStartDate;
     }
 
-    public String getWeekEndDate() {
+    public LocalDate getWeekEndDate() {
         return weekEndDate;
     }
 
-    public void setWeekEndDate(String weekEndDate) {
+    public void setWeekEndDate(LocalDate weekEndDate) {
         this.weekEndDate = weekEndDate;
     }
 
@@ -47,4 +48,19 @@ public class Schedule {
     public void setShifts(List<com.example.SmartAI.Model.Shift> shifts) {
         this.shifts = shifts;
     }
+    public void addShift(Shift shift) {
+        if (shift != null) {
+            shift.setSchedule(this); // Set the relationship between Shift and Schedule
+            this.shifts.add(shift);
+        }
+    }
+
+    // Removing a shift from the schedule
+    public void removeShift(Shift shift) {
+        if (shift != null) {
+            this.shifts.remove(shift);
+            shift.setSchedule(null); // Break the relationship
+        }
+    }
+
 }
